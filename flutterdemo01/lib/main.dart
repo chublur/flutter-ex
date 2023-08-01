@@ -134,7 +134,7 @@ _tabController=TabController(length: 3, vsync: this);
 
       body:TabBarView(
         controller: _tabController,
-        children: const [Text("热门"), Text("推荐"), Text("视频")],
+        children: const [Text("热门a"), Text("推荐"), Text("视频")],
       )
     );
   }
