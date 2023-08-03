@@ -4,6 +4,10 @@ import './pages/tabs.dart';
 import './KeepAliveWrapper.dart';
 import './stack-btn-card-warp.dart';
 import './dialog.dart';
+import './pages/pageView.dart';
+import './pages/pageViewBuiler.dart';
+import './PAGES/pageViewFull.dart';
+import './pages/Carousel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +29,11 @@ class MyApp extends StatelessWidget {
       // const Tabs() ,
       // const MyBtm(),
       // const MyTabs(),
-      const MyDialog(),
+      // const MyDialog(),  
+      // const MyView(),
+      // const PageViewBuilder(),
+      // const FullPage(),
+      const MyCarousel(),
     );
   }
 }

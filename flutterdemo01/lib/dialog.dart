@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // 引入自定义弹框
-import './widget/mydialog.dart';
+import 'package:flutterdemo01/widget/mydialog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -159,7 +159,7 @@ class _MyDialogState extends State<MyDialog> {
   void _toast() {
     Fluttertoast.showToast(
         msg: "流水落花春去也，天上人间",
-        toastLength:Toast.LENGTH_LONG, //值针对 android 平台
+        toastLength: Toast.LENGTH_LONG, //值针对 android 平台
         gravity: ToastGravity.CENTER, //方位
         timeInSecForIosWeb: 2, //提示时间 针对ios 和 web
         backgroundColor: const Color.fromARGB(255, 188, 71, 71), //背景颜色
@@ -169,6 +169,22 @@ class _MyDialogState extends State<MyDialog> {
   }
 
   // 自定义弹框
+  void _myDialog() async {
+    var res = await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return DiyDialog(
+              title: "自定义弹框",
+              content: "i am content",
+              onClose: () {
+                // ignore: avoid_print
+                Navigator.of(context).pop("我是自定义弹框");
+              });
+        });
+    // ignore: avoid_print
+    print(res);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,8 +221,8 @@ class _MyDialogState extends State<MyDialog> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _MyDialog,
-              child: const Text('浮窗--Toast'),
+              onPressed: _myDialog,
+              child: const Text('自定义弹框'),
             ),
           ],
         ),

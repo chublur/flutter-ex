@@ -1,15 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class MyDialog extends Dialog {
+class DiyDialog extends Dialog {
   final String title;
   final String content;
-  final Function()? onTap;
-  const MyDialog(
+  // final Function()? onTap;
+  final Function()? onClose;
+  const DiyDialog(
       {Key? key,
       required this.title,
       required this.content,
-      required this.onTap})
+      required this.onClose,
+      })
       : super(key: key);
+    _showTimer(context){
+    Timer.periodic(
+      const Duration(milliseconds: 3000),(t){
+        // ignore: avoid_print
+        print('close');
+        Navigator.of(context).pop();
+        t.cancel();
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -32,10 +46,10 @@ class MyDialog extends Dialog {
                         style: const TextStyle(fontSize: 18),
                       ),
                     ),
-                    Align(
+                     Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
-                        onTap: onTap,
+                        onTap: onClose,
                         child: const Icon(Icons.close),
                       ),
                     )
