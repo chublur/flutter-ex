@@ -8,6 +8,9 @@ import './pages/pageView.dart';
 import './pages/pageViewBuiler.dart';
 import './PAGES/pageViewFull.dart';
 import './pages/Carousel.dart';
+import './animatedList/fadetranstion.dart';
+import './animatedList/ScaleTransition.dart';
+import './animatedList/animationContainer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +36,10 @@ class MyApp extends StatelessWidget {
       // const MyView(),
       // const PageViewBuilder(),
       // const FullPage(),
-      const MyCarousel(),
+      // const MyCarousel(),
+      // const AnimatedListPage(),
+      // const ScaleAnimatedListPage(),
+      const Animate(),
     );
   }
 }

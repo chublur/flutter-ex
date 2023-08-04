@@ -45,7 +45,7 @@ class Swiper extends StatefulWidget {
   const Swiper(
       {super.key,
       this.width = double.infinity,
-      this.height = 200,
+      this.height = 400,
       required this.list});
 
   @override
@@ -86,8 +86,9 @@ class _SwiperState extends State<Swiper> {
       children: [
         SizedBox(
           width: double.infinity,
-          height: 200,
+          height: 400,
           child: PageView.builder(
+            controller: _pageController,
             onPageChanged: (int index) {
               setState(() {
                 currentIndex = index % (pageList.length);
@@ -129,13 +130,13 @@ class PicturePage extends StatelessWidget {
   final double height;
   final double width;
   const PicturePage({super.key,required this.url,
-      this.height = 200,
+      this.height = 400,
       this.width = double.infinity});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 400,
       width: double.infinity,
       child: Image.network(
         url,
