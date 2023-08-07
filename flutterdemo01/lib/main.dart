@@ -1,5 +1,6 @@
 // drawer 侧边栏
 import 'package:flutter/material.dart';
+import 'package:flutterdemo01/animatedList/xianshiAnimation.dart';
 import './pages/tabs.dart';
 import './KeepAliveWrapper.dart';
 import './stack-btn-card-warp.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: 
+      const XianShi()
       // const Tabs() ,
       // const MyBtm(),
       // const MyTabs(),
@@ -39,7 +41,11 @@ class MyApp extends StatelessWidget {
       // const MyCarousel(),
       // const AnimatedListPage(),
       // const ScaleAnimatedListPage(),
-      const Animate(),
+      // const Animate(),
+      // routes: {
+      //   '/':(context)=>const MyTabs(),
+      //   '/animated':(context)=>const Animate()
+      // },
     );
   }
 }
