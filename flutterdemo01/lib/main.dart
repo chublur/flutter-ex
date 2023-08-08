@@ -13,6 +13,8 @@ import './animatedList/fadetranstion.dart';
 import './animatedList/ScaleTransition.dart';
 import './animatedList/animationContainer.dart';
 
+
+import './routes/routers.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -29,8 +31,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: 
-      const XianShi()
+      initialRoute: '/',
+      onGenerateRoute: onGenerateRoute,
+      // home: 
+      // const HomePage(),
+      // const XianShi()
       // const Tabs() ,
       // const MyBtm(),
       // const MyTabs(),
