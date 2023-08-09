@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import '../pages/tabs.dart';
-import '../heroAnimation/hero.dart';
+// import '../heroAnimation/hero.dart';
+import '../pages/hero.dart';
 
 final Map<String,Function> routes = {
-  '/': (contxt) => const Tabs(), 
-  '/hero': (contxt,{arguments}) => HeroPage(arguments:arguments), 
+  '/': (context) => const Tabs(), 
+  '/hero': (context,{arguments}) => HeroPage(arguments:arguments), 
 };
 
 var onGenerateRoute = (RouteSettings settings) {
