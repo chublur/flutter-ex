@@ -1,6 +1,7 @@
 // drawer 侧边栏
 import 'package:flutter/material.dart';
 import 'package:flutterdemo01/animatedList/xianshiAnimation.dart';
+import 'package:get/get.dart';
 import './pages/tabs.dart';
 import './KeepAliveWrapper.dart';
 import './stack-btn-card-warp.dart';
@@ -12,7 +13,12 @@ import './pages/Carousel.dart';
 import './animatedList/fadetranstion.dart';
 import './animatedList/ScaleTransition.dart';
 import './animatedList/animationContainer.dart';
-
+import './key/key.dart';
+import './demo/carddemo.dart';
+import 'getX/first.dart';
+import './getX/language.dart';
+// 引入语言包
+import './getX/message.dart';
 
 import './routes/routers.dart';
 void main() {
@@ -25,15 +31,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      translations: Messages(),
+      locale: const Locale('zh','CN'),  //设置默认语言
+      fallbackLocale: const Locale('en','US'),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // 路由
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,
-      // home: 
+      home: 
+      const MyLanguage(),
+      // const CardPerspectiveDemoPage(),
+      // const ChangeTheme(),
+      // const GlobalPage(),
       // const HomePage(),
       // const XianShi()
       // const Tabs() ,
