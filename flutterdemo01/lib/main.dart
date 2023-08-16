@@ -20,6 +20,9 @@ import './getX/language.dart';
 // 引入语言包
 import './getX/message.dart';
 
+// 状态管理
+import './pages/state/state.dart';
+
 import './routes/routers.dart';
 void main() {
   runApp(const MyApp());
@@ -44,7 +47,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,
       home: 
-      const MyLanguage(),
+      const MyState(),
+      // const MyLanguage(),
       // const CardPerspectiveDemoPage(),
       // const ChangeTheme(),
       // const GlobalPage(),
