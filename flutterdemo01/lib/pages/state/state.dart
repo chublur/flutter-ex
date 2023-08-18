@@ -104,3 +104,98 @@ class MySon extends StatelessWidget {
     );
   }
 }
+
+// 混合状态管理  在这种情况下，组件自身管理一些内部状态，而父组件管理一些其他外部状态。
+// 手指按下时，盒子的周围会出现一个深绿色的边框，抬起时，边框消失。点击完成后，盒子的颜色改变。
+class BoxA extends StatefulWidget {
+  const BoxA({super.key});
+
+  @override
+  State<BoxA> createState() => _BoxAState();
+}
+
+class _BoxAState extends State<BoxA> {
+  bool _active = false;
+  void onChangeState(bool val) {
+    setState(() {
+      _active = val;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('混合管理状态'),
+      ),
+      body: BoxB(
+        onChange: onChangeState,
+        active: _active,
+      ),
+    );
+  }
+}
+
+class BoxB extends StatefulWidget {
+  final bool active;
+  final ValueChanged<bool> onChange;
+  const BoxB({super.key, this.active = false, required this.onChange});
+
+  @override
+  State<BoxB> createState() => _BoxBState();
+}
+
+class _BoxBState extends State<BoxB> {
+  bool hightLight = false;
+  void handleTap() {
+    setState(() {
+      widget.onChange(!widget.active);
+    });
+  }
+
+  void handleTapUp(TapUpDetails details) {
+    setState(() {
+      hightLight = false;
+    });
+  }
+
+  void handleTapDown(TapDownDetails details) {
+    setState(() {
+      hightLight = true;
+    });
+  }
+
+  void handleTapcancel() {
+    setState(() {
+      hightLight = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapUp: handleTapUp,
+      onTapDown: handleTapDown,
+      onTapCancel: handleTapcancel,
+      onTap: handleTap,
+      child: Center(
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            color: widget.active ? Colors.blue : Colors.blueGrey,
+            border: hightLight
+                ? Border.all(color: Colors.cyan.shade300, width: 10)
+                : null,
+          ),
+          child: Center(
+            child: Text(
+              widget.active ? "active" : "disabled",
+              style: const TextStyle(fontSize: 32, color: Colors.white),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

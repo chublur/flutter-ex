@@ -47,8 +47,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,
       home: 
+      // 状态管理
       // const MyState(),
-      const MyFather(),
+      // const MyFather(),
+      const BoxA(),
+      
       // const MyLanguage(),
       // const CardPerspectiveDemoPage(),
       // const ChangeTheme(),
