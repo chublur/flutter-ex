@@ -24,6 +24,7 @@ import './getX/message.dart';
 import './pages/state/state.dart';
 
 import './routes/routers.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -38,20 +39,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       translations: Messages(),
-      locale: const Locale('zh','CN'),  //设置默认语言
-      fallbackLocale: const Locale('en','US'),
+      locale: const Locale('zh', 'CN'), //设置默认语言
+      fallbackLocale: const Locale('en', 'US'),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       // 路由
       initialRoute: '/',
       onGenerateRoute: onGenerateRoute,
-      home: 
-      // 状态管理
-      // const MyState(),
-      // const MyFather(),
-      const BoxA(),
-      
+      home:
+          // 状态管理
+          // const MyState(),
+          // const MyFather(),
+          // const BoxA(),
+          // const MyLogin(),
+          const ProgressRoute(),
       // const MyLanguage(),
       // const CardPerspectiveDemoPage(),
       // const ChangeTheme(),
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
       // const Tabs() ,
       // const MyBtm(),
       // const MyTabs(),
-      // const MyDialog(),  
+      // const MyDialog(),
       // const MyView(),
       // const PageViewBuilder(),
       // const FullPage(),
@@ -279,20 +281,143 @@ class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
               const ListTile(title: Text("第二个tab")),
               const ListTile(title: Text("第二个tab")),
               ElevatedButton.icon(
-                icon:const  Icon(Icons.search),
-                label:const Text("search"),
-                onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context){
-                      return const SearchDemo(); 
-                    })
-                  );
-                }, 
-                )
+                icon: const Icon(Icons.search),
+                label: const Text("search"),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return const SearchDemo();
+                  }));
+                },
+              )
             ],
           ))
         ],
       ),
+    );
+  }
+}
+
+// 测试组件用例
+class MyLogin extends StatefulWidget {
+  const MyLogin({super.key});
+
+  @override
+  State<MyLogin> createState() => _MyLoginState();
+}
+
+class _MyLoginState extends State<MyLogin> {
+  TextEditingController unamecontroller = TextEditingController();
+  TextEditingController pwdcontroller = TextEditingController();
+  GlobalKey formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('组件'),
+        ),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+              const TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.man),
+                    labelText: "username",
+                    hintText: "please enter your username"),
+                textAlign: TextAlign.center,
+              ),
+              const TextField(
+                autofocus: true,
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.password),
+                  labelText: "password",
+                  hintText: "please enter your password",
+                  focusColor: Colors.pink,
+                  hoverColor: Colors.pink,
+                  //获得焦点下划线设为蓝色
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.pink),
+                  ),
+                ),
+              ),
+              Form(
+                key: formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      autofocus: true,
+                      controller: unamecontroller,
+                      decoration: const InputDecoration(
+                        labelText: "用户名",
+                        hintText: "用户名或邮箱",
+                        icon: Icon(Icons.person),
+                      ),
+                      // 校验用户名
+                      validator: (v) {
+                        return v!.trim().isNotEmpty ? null : "用户名不能为空";
+                      },
+                    ),
+                    TextFormField(
+                      controller: pwdcontroller,
+                      decoration: const InputDecoration(
+                        labelText: "密码",
+                        hintText: "您的登录密码",
+                        icon: Icon(Icons.lock),
+                      ),
+                      obscureText: true,
+                      //校验密码
+                      validator: (v) {
+                        return v!.trim().length > 5 ? null : "密码不能少于6位";
+                      },
+                    ),
+                    // 登录按钮
+                    Padding(
+                      padding: const EdgeInsets.only(top: 28.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: ElevatedButton(
+                              child: const Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Text("登录"),
+                              ),
+                              onPressed: () {
+                                // 通过_formKey.currentState 获取FormState后，
+                                // 调用validate()方法校验用户名密码是否合法，校验
+                                // 通过后再提交数据。
+                                if ((formKey.currentState as FormState)
+                                    .validate()) {
+                                  //验证通过提交数据
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ])));
+  }
+}
+
+
+
+// 进度条
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BoxConstraints(
+      maxWidth: 
+      
     );
   }
 }
