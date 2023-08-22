@@ -16,6 +16,7 @@ import './animatedList/animationContainer.dart';
 import './key/key.dart';
 import './demo/carddemo.dart';
 import 'getX/first.dart';
+import './layout/layoutbuilder.dart';
 import './getX/language.dart';
 // 引入语言包
 import './getX/message.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
           // const MyFather(),
           // const BoxA(),
           // const MyLogin(),
-          const ProgressRoute(),
+      const ResponsiveColumn(children: [],),
       // const MyLanguage(),
       // const CardPerspectiveDemoPage(),
       // const ChangeTheme(),
@@ -410,14 +411,3 @@ class _MyLoginState extends State<MyLogin> {
 
 
 // 进度条
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BoxConstraints(
-      maxWidth: 
-      
-    );
-  }
-}
