@@ -524,7 +524,7 @@ class DynamicGrid extends StatelessWidget {
       crossAxisSpacing: 20,
       mainAxisSpacing: 20,
       padding:const EdgeInsets.all(10),
-      crossAxisCount: 2,
+      crossAxisCount: 3,
       childAspectRatio: 0.8,
       children: _initGrid(),
       );

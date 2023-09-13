@@ -19,7 +19,9 @@ import 'getX/first.dart';
 import './layout/layoutbuilder.dart';
 import './pages/listView/infinite.dart';
 import './pages/listView/scroll.dart';
+import './pages/listView/notification.dart';
 import './getX/language.dart';
+import './demo.dart';
 // 引入语言包
 import './getX/message.dart';
 
@@ -69,14 +71,22 @@ class MyApp extends StatelessWidget {
       // const MyDialog(),
       // const MyView(),
       // const PageViewBuilder(),
-      // const FullPage(),
+      const FullPage(),
       // const MyCarousel(),
+      // -----gridview布局--------
+      // const MyGrid(),
+      // const MygridS(),
+      // const DynamicGrid(),
+      // const GridBuild(),
+      // -----animatedList 动画列表-----
       // const AnimatedListPage(),
       // const ScaleAnimatedListPage(),
       // const Animate(),
       // 无限列表
       // const InfiniteList(),
-      const ScrollListener(),
+      // const ScrollListener(),
+      //滚动通知
+      // const MyNotification(),
       // routes: {
       //   '/':(context)=>const MyTabs(),
       //   '/animated':(context)=>const Animate()
@@ -122,7 +132,7 @@ class _MyBtmState extends State<MyBtm> with SingleTickerProviderStateMixin {
             Tab(child: Text("视频"))
           ]),
         ),
-        // 左侧边栏
+        // 左侧边栏 
         drawer: Drawer(
           child: Column(
             children: <Widget>[
