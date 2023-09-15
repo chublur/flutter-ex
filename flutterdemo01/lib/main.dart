@@ -20,6 +20,8 @@ import './layout/layoutbuilder.dart';
 import './pages/listView/infinite.dart';
 import './pages/listView/scroll.dart';
 import './pages/listView/notification.dart';
+import './pages/listView/customscrollview.dart';
+import './pages/listView/sliver.dart';
 import './getX/language.dart';
 import './demo.dart';
 // 引入语言包
@@ -58,20 +60,20 @@ class MyApp extends StatelessWidget {
           // const MyFather(),
           // const BoxA(),
           // const MyLogin(),
-      // const ResponsiveColumn(children: [],),
-      // const MyLanguage(),
-      // const CardPerspectiveDemoPage(),
-      // const ChangeTheme(),
-      // const GlobalPage(),
-      // const HomePage(),
-      // const XianShi()
-      // const Tabs() ,
-      // const MyBtm(),
-      // const MyTabs(),
+          // const ResponsiveColumn(children: [],),
+          // const MyLanguage(),
+          // const CardPerspectiveDemoPage(),
+          // const ChangeTheme(),
+          // const GlobalPage(),
+          // const HomePage(),
+          // const XianShi()
+          // const Tabs() ,
+          // const MyBtm(),
+          // const MyTabs(),
       // const MyDialog(),
       // const MyView(),
       // const PageViewBuilder(),
-      const FullPage(),
+      // const FullPage(),
       // const MyCarousel(),
       // -----gridview布局--------
       // const MyGrid(),
@@ -85,6 +87,10 @@ class MyApp extends StatelessWidget {
       // 无限列表
       // const InfiniteList(),
       // const ScrollListener(),
+      // 组合滚动
+      // const CustomScroll(),
+      // sliver
+      const OtherSliver(),
       //滚动通知
       // const MyNotification(),
       // routes: {
@@ -132,7 +138,7 @@ class _MyBtmState extends State<MyBtm> with SingleTickerProviderStateMixin {
             Tab(child: Text("视频"))
           ]),
         ),
-        // 左侧边栏 
+        // 左侧边栏
         drawer: Drawer(
           child: Column(
             children: <Widget>[
@@ -218,6 +224,7 @@ class MyTabs extends StatefulWidget {
 
 class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final List _tabs = ["销售", "推荐", "其他"];
   @override
   void dispose() {
     //生命周期函数 永久移除组件，并释放资源
@@ -253,10 +260,11 @@ class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
               unselectedLabelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.label,
               controller: _tabController, //注意
-              tabs: const [
-                Tab(child: Text("热销", style: TextStyle(color: Colors.black))),
-                Tab(child: Text("推荐", style: TextStyle(color: Colors.black)))
-              ],
+              tabs: _tabs
+                  .map((e) => Tab(
+                      child:
+                          Text(e, style: const TextStyle(color: Colors.black))))
+                  .toList(),
             ),
           ),
         ),
@@ -288,6 +296,24 @@ class _MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
               ListTile(title: Text("第一个tab")),
               ListTile(title: Text("第一个tab")),
               ListTile(title: Text("最后一个tab")),
+            ],
+          )),
+          KeepAliveWrapper(
+              child: ListView(
+            children: <Widget>[
+              const ListTile(title: Text("第二个tab")),
+              const ListTile(title: Text("第二个tab")),
+              const ListTile(title: Text("第二个tab")),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.search),
+                label: const Text("search"),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return const SearchDemo();
+                  }));
+                },
+              )
             ],
           )),
           KeepAliveWrapper(
@@ -422,7 +448,5 @@ class _MyLoginState extends State<MyLogin> {
             ])));
   }
 }
-
-
 
 // 进度条

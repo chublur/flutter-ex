@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo01/KeepAliveWrapper.dart';
 
 // 无限下拉
 class FullPage extends StatefulWidget {
@@ -21,28 +22,29 @@ class _FullPageState extends State<FullPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("无限滚屏"),
-      ),
-      body: PageView(
-        scrollDirection: Axis.vertical,
-        onPageChanged: (index) {
-          
-          // ignore: avoid_print
-          print(index);
-          // ignore: avoid_print
-          print(_list.length);
-          if (index + 2 == _list.length) {
-            setState(() {
-              for (var i = 0; i < 10; i++) {
-                _list.add(MyPage(text: "$i"));
+        appBar: AppBar(
+          title: const Text("无限滚屏+缓存子页"),
+        ),
+        body: KeepAliveWrapper(
+          keepAlive: true,
+          child: PageView(
+            scrollDirection: Axis.vertical,
+            onPageChanged: (index) {
+              // ignore: avoid_print
+              print(index);
+              // ignore: avoid_print
+              print(_list.length);
+              if (index + 2 == _list.length) {
+                setState(() {
+                  for (var i = 0; i < 10; i++) {
+                    _list.add(MyPage(text: "$i"));
+                  }
+                });
               }
-            });
-          }
-        },
-        children: _list,
-      ),
-    );
+            },
+            children: _list,
+          ),
+        ));
   }
 }
 
